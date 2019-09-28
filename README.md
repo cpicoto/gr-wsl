@@ -35,10 +35,9 @@ After a successful setup you will be able to use gr-satellites to decode satelli
 * Launch Ubuntu app
   * Create your default username and password
 	* First step upgrade to latest release
-    * Check your release with: uname -a 
-      * ex: 4.4.0-18362-Microsoft
 		* Edit  /etc/update-manager/release-upgrades and change to Prompt=normal
 		* Execute do-release-upgrade (this will upgrade to the latest normal release of your distro)
+        * Note: I had to skip some repos that were not available at time of installation.
 
 	* Edit /etc/pulse/client.conf
 		Change the default-server line to: default-server = tcp:localhost

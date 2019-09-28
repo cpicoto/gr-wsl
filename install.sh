@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ~
-mkdir -f ~/runtime-xdg
+mkdir ~/runtime-xdg
 echo "export DISPLAY=127.0.0.1:0.0" >>~/.bashrc
 echo "export PULSE_SERVER=tcp:127.0.0.1;" >>~/.bashrc
 echo "export XDG_RUNTIME_DIR=~/runtime-xdg" >>~/.bashrc
