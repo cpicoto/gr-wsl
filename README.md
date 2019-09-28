@@ -16,7 +16,6 @@ After a successful setup you will be able to use gr-satellites to decode satelli
       Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
 * If you want to use graphical based features from GNU radio you need an X Server application running on your Windows PC
-  This is an optional requirment if you only need to use command line. 
   * I use X410 (https://token2shell.com/x410/) from the Microsoft Store
         https://www.microsoft.com/en-us/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab
   * Launch X410 from your Start Menu or type X410 on the Search Box
