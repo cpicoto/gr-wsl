@@ -25,51 +25,47 @@ After a successful setup you will be able to use gr-satellites to decode satelli
   * I am using Ubuntu for this install 
         https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab
 
-* 
-* Launch Debian after configuring WSL
-	* Edit /etc/apt/sources.list
-	* Insert this new line at the top ```deb http://ftp.us.debian.org/debian sid main```
-	* ```
-		sudo apt update
-		sudo apt upgrade  --> This will take sometime
-	    sudo apt install make cmake git xterm python-pip synaptic swig doxygen direwolf
-		pip install construct requests
-	    sudo synaptic```
-	* Select gnuradio and gnuradio-dev >= 3.7.13.4 and apply changes to Install
-	```
-	cd ~
-	git clone https://github.com/daniestevez/gr-satellites
-	git clone https://github.com/daniestevez/gr-kiss
-	git clone https://github.com/daniestevez/libfec
-	cd libfec
-	./configure
-	make
-	sudo make install
-	cd ..
-	cd gr-kiss
-	mkdir build
-	cd build
-	cmake ..
-	make
-	sudo make install
-	cd ../..
-	cd gr-satellites
-	mkdir build
-	cd build
-	cmake ..
-	make
-	sudo make install
-	sudo ldconfig
-	cd ..
-	./compile_hierarchical.sh
-	```
+* Enabling sound: follow these instructions
+	* https://token2shell.com/howto/x410/enabling-sound-in-wsl-ubuntu-let-it-sing/
+	* Use this version of pulseaudio http://bosmans.ch/pulseaudio/pulseaudio-1.1.zip
+  * Make sure you have the pulseaudio daemon running and allowed on the firewall before attempting a connection from WSL
+  * This will be attempted later using pavucontrol in the WSL 
+
+
+* Launch Ubuntu app
+  * Create your default username and password
+	* First step upgrade to latest release
+    * Check your release with: uname -a 
+      * ex: 4.4.0-18362-Microsoft
+		* Edit  /etc/update-manager/release-upgrades and change to Prompt=normal
+		* Execute do-release-upgrade (this will upgrade to the latest normal release of your distro)
+
+	* Edit /etc/pulse/client.conf
+		Change the default-server line to: default-server = tcp:localhost
+
+* Clone the gr-wsl repo and start the install script
+  * cd ~
+  * git clone https://github.com/cpicoto/gr-wsl
+  * cd gr-wsl
+  * ./install.sh  
+  * Launch gnuradio-companion
+
+* TODO
+  * QTGui will fail without this:
+    * /usr/lib/x86_64-linux-gnu$ ls -l libQt5Core.so.5
+lrwxrwxrwx 1 root root 20 Jun 25 03:23 libQt5Core.so.5 -> libQt5Core.so.5.12.2
+    * sudo strip --remove-section=.note.ABI-tag libQt5Core.so.5.12.2
+    * Include a simple audio playback GRC to validate the setup
+
+* Future Work
+  * Considering publishing a dedicated gr-satellites distro with all this setup already done.
 
 
 
 ## Dependencies
 
 You will need a Windows 10 PC including
-  * Recommended Version 1903 (OS Build 18362.356)
+  * Recommended Version 1903 (OS Build 18362.XXX)
   * PC should have Soundcard and Internet Connection
   * It will use Windows Subsystem for Linux (WSL)
   * X Server application for Windows 
