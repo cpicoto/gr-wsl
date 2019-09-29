@@ -49,7 +49,7 @@ cd ..
 ./compile_hierarchical.sh
 
 #Graphics QT won't work in WSL if the next line fails
-sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.2
+sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.1*
 
 #Configure pulseaudio
 #sudo echo "default-server = tcp:localhost" >>~/etc/pulse/client.conf
