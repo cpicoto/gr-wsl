@@ -19,6 +19,7 @@ After a successful setup you will be able to use gr-satellites to decode satelli
   * I use X410 (https://token2shell.com/x410/) from the Microsoft Store
         https://www.microsoft.com/en-us/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab
   * Launch X410 from your Start Menu or type X410 on the Search Box
+  * Alternatively you can use Xming from https://sourceforge.net/projects/xming/
   
 * On Windows 10, go the Microsoft Store and download a Linux distribution 
   * I am using Ubuntu for this install 
@@ -36,10 +37,17 @@ After a successful setup you will be able to use gr-satellites to decode satelli
 	* First step upgrade to latest release
 		* Edit  /etc/update-manager/release-upgrades and change to Prompt=normal
 		* Execute do-release-upgrade (this will upgrade to the latest normal release of your distro)
-        * Note: I had to skip some repos that were not available at time of installation.
+        * Note: I had to skip some repos (like the snap store) that were not available at time of installation.
+        * Executing "lsb_release -a" should tell you the Release you are running afterwards
+              :~/gr-wsl$ lsb_release -a
+              No LSB modules are available.
+              Distributor ID: Ubuntu
+              Description:    Ubuntu 19.04
+              Release:        19.04
+              Codename:       disco
 
 	* Edit /etc/pulse/client.conf
-		Change the default-server line to: default-server = tcp:localhost
+		  Change the default-server line to: default-server = tcp:localhost 
 
 * Clone the gr-wsl repo and start the install script
   * cd ~
@@ -48,15 +56,12 @@ After a successful setup you will be able to use gr-satellites to decode satelli
   * ./install.sh  
   * Launch gnuradio-companion
 
-* TODO
-  * QTGui will fail without this:
-    * /usr/lib/x86_64-linux-gnu$ ls -l libQt5Core.so.5
-lrwxrwxrwx 1 root root 20 Jun 25 03:23 libQt5Core.so.5 -> libQt5Core.so.5.12.2
-    * sudo strip --remove-section=.note.ABI-tag libQt5Core.so.5.12.2
-    * Include a simple audio playback GRC to validate the setup
+* At this stage the gnuradio-companion should work just fine try opening ~/gr-wsl/apps/ready.grc and play.
+    
 
 * Future Work
-  * Considering publishing a dedicated gr-satellites distro with all this setup already done.
+  * Build a simpler solution for UDP Audio Stream in SDR#
+  * Considering publishing a dedicated gr-wsl distro with all this setup already done.
 
 
 
@@ -71,14 +76,15 @@ You will need a Windows 10 PC including
   * pulseaudio for windows to play back audio comming from wsl
   * An SDR receiver for decoding realtime transmitions or IQ files.
   * An SDR Application for Windows that can transmit demodulated audio over UDP
-    * I use SDR# v1.0.0.1715 with the SatNogs Tracker Plugin
+    * I use SDR# v1.0.0.1716 with the SatNogs Tracker Plugin
     * https://github.com/cpicoto/SatNogsTracker
   
 
 ## Credits and References
 
 * gr-satellites by Dani Estevez available at https://github.com/daniestevez/gr-satellites
-* Scott Chapman @scott23192 (K4KDR) his twitter feed and GRC files at https://www.qsl.net/k/k4kdr//grc/
+* Scott Chapman @scott23192 (K4KDR) for his twitter feed and GRC files at https://www.qsl.net/k/k4kdr//grc/
+* Peter Goodhall @2m0sql for his help validating this process
 * Microsoft for WSL https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
 ## About the author
