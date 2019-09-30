@@ -13,7 +13,10 @@ After a successful setup you will be able to use gr-satellites to decode satelli
 
 * Configure WSL following these instructions https://docs.microsoft.com/en-us/windows/wsl/install-win10
   * Basically says to enable the feature from a Powershell Windows as Administrator
-      Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+  
+
+ ```Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux```
+
 
 * If you want to use graphical based features from GNU radio you need an X Server application running on your Windows PC
   * I use X410 (https://token2shell.com/x410/) from the Microsoft Store
@@ -50,12 +53,13 @@ After a successful setup you will be able to use gr-satellites to decode satelli
 		  Change the default-server line to: default-server = tcp:localhost 
 
 * Clone the gr-wsl repo and start the install script
-  * cd ~
-  * git clone https://github.com/cpicoto/gr-wsl
-  * cd gr-wsl
-  * ./install.sh  
-  * Launch gnuradio-companion
-
+	```
+	cd ~
+	git clone https://github.com/cpicoto/gr-wsl
+	cd gr-wsl
+	./install.sh  
+	Launch gnuradio-companion
+	```
 * At this stage the gnuradio-companion should work just fine try opening ~/gr-wsl/apps/ready.grc and play.
     
 
