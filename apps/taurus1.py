@@ -5,7 +5,7 @@
 # Title: Taurus-1 decoder
 # Author: Daniel Estevez
 # Description: Taurus-1 decoder
-# Generated: Sun Sep 29 13:20:40 2019
+# Generated: Sun Oct  6 13:36:41 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -112,6 +112,7 @@ class taurus1(gr.top_block, Qt.QWidget):
         	lambda: self.set_af_gain(eng_notation.str_to_num(str(self._af_gain_line_edit.text().toAscii()))))
         self.top_grid_layout.addWidget(self._af_gain_tool_bar)
         self.satellites_taurus1_telemetry_parser_0 = satellites.taurus1_telemetry_parser()
+        self.satellites_submit_0 = satellites.submit('https://db.satnogs.org/api/telemetry/', 44530, 'AD7NP', -122.2084, 47.6458, recstart)
         self.satellites_print_timestamp_0 = satellites.print_timestamp('%Y-%m-%d %H:%M:%S', True)
         self.satellites_lilacsat1_demux_0_0 = satellites.lilacsat1_demux("syncword")
         self.satellites_lilacsat1_demux_0 = satellites.lilacsat1_demux("syncword")
@@ -271,6 +272,7 @@ class taurus1(gr.top_block, Qt.QWidget):
         self.msg_connect((self.lilacsat_sync_det_b_0, 'out'), (self.lilacsat_lilacsat1_frame_depack_0, 'in'))
         self.msg_connect((self.lilacsat_sync_det_b_0_0, 'out'), (self.lilacsat_lilacsat1_frame_depack_0, 'in'))
         self.msg_connect((self.satellites_kiss_to_pdu_1, 'out'), (self.satellites_print_timestamp_0, 'in'))
+        self.msg_connect((self.satellites_kiss_to_pdu_1, 'out'), (self.satellites_submit_0, 'in'))
         self.msg_connect((self.satellites_lilacsat1_demux_0, 'kiss'), (self.blocks_pdu_to_tagged_stream_1, 'pdus'))
         self.msg_connect((self.satellites_lilacsat1_demux_0, 'codec2'), (self.blocks_pdu_to_tagged_stream_1_0, 'pdus'))
         self.msg_connect((self.satellites_lilacsat1_demux_0_0, 'kiss'), (self.blocks_pdu_to_tagged_stream_1, 'pdus'))
