@@ -13,7 +13,10 @@ After a successful setup you will be able to use gr-satellites to decode satelli
 
 * Configure WSL following these instructions https://docs.microsoft.com/en-us/windows/wsl/install-win10
   * Basically says to enable the feature from a Powershell Windows as Administrator
-      Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+  
+
+ ```Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux```
+
 
 * If you want to use graphical based features from GNU radio you need an X Server application running on your Windows PC
   * I use X410 (https://token2shell.com/x410/) from the Microsoft Store
@@ -22,7 +25,7 @@ After a successful setup you will be able to use gr-satellites to decode satelli
   * Alternatively you can use Xming from https://sourceforge.net/projects/xming/
   
 * On Windows 10, go the Microsoft Store and download a Linux distribution 
-  * I am using Ubuntu for this install 
+  * I am using Ubuntu for this install but it works fine with Debian also
         https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab
 
 * Enabling sound: follow these instructions
@@ -32,9 +35,9 @@ After a successful setup you will be able to use gr-satellites to decode satelli
   * This will be attempted later using pavucontrol in the WSL 
 
 
-* Launch Ubuntu app
+* Launch Ubuntu app (or Debian)
   * Create your default username and password
-	* First step upgrade to latest release
+	* First step upgrade to latest release (if Ubuntu)
 		* Edit  /etc/update-manager/release-upgrades and change to Prompt=normal
 		* Execute do-release-upgrade (this will upgrade to the latest normal release of your distro)
         * Note: I had to skip some repos (like the snap store) that were not available at time of installation.
@@ -50,18 +53,18 @@ After a successful setup you will be able to use gr-satellites to decode satelli
 		  Change the default-server line to: default-server = tcp:localhost 
 
 * Clone the gr-wsl repo and start the install script
-  * cd ~
-  * git clone https://github.com/cpicoto/gr-wsl
-  * cd gr-wsl
-  * ./install.sh  
-  * Launch gnuradio-companion
-
+	```
+	cd ~
+	git clone https://github.com/cpicoto/gr-wsl
+	cd gr-wsl
+	./install.sh  
+	Launch gnuradio-companion
+	```
 * At this stage the gnuradio-companion should work just fine try opening ~/gr-wsl/apps/ready.grc and play.
     
 
 * Future Work
-  * Build a simpler solution for UDP Audio Stream in SDR#
-  * Considering publishing a dedicated gr-wsl distro with all this setup already done.
+  * Considering publishing a dedicated gr-wsl distro with all this setup already done to the Microsoft Store.
 
 
 
@@ -76,8 +79,9 @@ You will need a Windows 10 PC including
   * pulseaudio for windows to play back audio comming from wsl
   * An SDR receiver for decoding realtime transmitions or IQ files.
   * An SDR Application for Windows that can transmit demodulated audio over UDP
-    * I use SDR# v1.0.0.1716 with the SatNogs Tracker Plugin
-    * https://github.com/cpicoto/SatNogsTracker
+    * I use SDR# v1.0.0.1716 with the SDR UDPAudio Plugin
+    * https://github.com/cpicoto/SDR-UDPAudio
+    
   
 
 ## Credits and References
@@ -88,4 +92,5 @@ You will need a Windows 10 PC including
 * Microsoft for WSL https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
 ## About the author
-* Carlos Picoto (cpicoto@hotmail.com) is an Ham Radio enthusiast and Software Engineer with the callsigns AD7NP and CT1DYE.
+* Carlos Picoto (cpicoto@hotmail.com) is an Ham Radio enthusiast and Software Engineer 
+* AD7NP and CT1DYE.
